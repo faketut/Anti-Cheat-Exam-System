@@ -8,9 +8,9 @@ import psutil
 root = tkinter.Tk()
 root.title('Anti-cheating demo')
 #window's size and position
-root.geometry('300*300+300+100')
+root.geometry('300x300+300+100')
 #don't allow to change window's size
-root.resizeable(False, False)
+root.resizable(False, False)
 ban = tkinter.IntVar(root, 0)
 #force stop the mainstream text editors and web browsers
 def funcBan():
@@ -25,11 +25,11 @@ def funcBan():
                     p.kill()
             except:
                 pass
-            #clean up the paste board
-            ctypes.windll.user32.OpenClipboard(None)
-            ctypes.windll.use32.EmptyClipboard()
-            ctypes.windll.user32.CloseClipboard()
-            time.sleep(1)
+        #clean up the paste board
+        ctypes.windll.user32.OpenClipboard(None)
+        ctypes.windll.use32.EmptyClipboard()
+        ctypes.windll.user32.CloseClipboard()
+        time.sleep(1)
 #start
 def Anti_start():
     ban.set(1)

@@ -2,8 +2,8 @@ import pandas as pd
 import random
 from Config import *
 
-#check if user exist
-def checkAccount(filename)->tuple:
+# check if user exist
+def checkAccount(filename) -> tuple:
     path = getCurrentPath() + DataPath +filename
     fid = open(path, 'r+')
     accountList = []
@@ -18,18 +18,19 @@ def checkAccount(filename)->tuple:
     fid.close()
     return userNameList, userPasswordList
 
-#add new user
+# add new user
 def addUser(filenmae, userName: str, userPassword: str):
     try:
         path = getCurrentPath() + DataPath +filenmae
         txtfile = open(path, 'a')
         data = '\n' + userName + ' ' + userPassword
+        txtfile.write(data)
         txtfile.close()
         return True
     except:
         return False
 
-#single-choice ques
+# single-choice ques
 class SingleChoiceSubject:
     def __init__(self):
         self.scorePer = SINGLE_SCORE
@@ -43,13 +44,13 @@ class SingleChoiceSubject:
     def generateRand(self):
         count = 0
         while count < self.totalNum:
-            randCount = random.randint(0, TOTAL_SINGAL-1)
+            randCount = random.randint(0, TOTAL_SINGLE-1)
             if randCount not in self.randList:
                 self.randList.append(randCount)
                 count = count + 1
             else:
                 continue
-            print("Single choice:",self.randList)
+        print("Single choice:",self.randList)
 
     def getData(self):
         self.generateRand()
@@ -65,7 +66,7 @@ class SingleChoiceSubject:
             count = count + 1
         return self.subjectList
 
-#multiple-choice ques
+#judge ques
 class JudgeSubject:
     def __init__(self):
         self.scorePer = JUDGE_SCORE
@@ -85,7 +86,7 @@ class JudgeSubject:
                 count = count + 1
             else:
                 continue
-            print("Judgement choice:",self.randList)
+        print("Judgement choice:",self.randList)
 
     def getData(self):
         self.generateRand()
@@ -97,7 +98,7 @@ class JudgeSubject:
             count = count + 1
         return self.subjectList
 
-#judge ques
+#multi-choice ques
 class MultiChoiceSubject:
     def __init__(self):
         self.scorePer = MULTI_SCORE
@@ -117,7 +118,7 @@ class MultiChoiceSubject:
                 count = count + 1
             else:
                 continue
-            print("Multiple choice:",self.randList)
+        print("Multiple choice:",self.randList)
 
     def getData(self):
         self.generateRand()
@@ -125,6 +126,10 @@ class MultiChoiceSubject:
         for randCount in self.randList:
             self.subjectList[count] = {}
             self.subjectList[count]['content'] = self.df['content'][randCount]
+            self.subjectList[count]['A'] = self.df['A'][randCount]
+            self.subjectList[count]['B'] = self.df['B'][randCount]
+            self.subjectList[count]['C'] = self.df['C'][randCount]
+            self.subjectList[count]['D'] = self.df['D'][randCount]
             self.subjectList[count]['correct answer'] = self.df['correct answer'][randCount]
             count = count + 1
         return self.subjectList
