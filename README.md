@@ -4,6 +4,19 @@
 
 The Anti-Cheating Exam System is a Python-based application designed to prevent cheating during exams using Tkinter. This system offers robust measures to ensure a fair and secure exam environment for users.
 
+## Setup & Installation
+
+Make sure you have the latest version of Python installed.
+
+```bash
+git clone <repo-url>
+
+## Running The App
+
+```bash
+python main.py
+```
+
 ## Features
 
 - **Anti-Cheating Mechanism:** Implements various techniques to prevent cheating during exams.
